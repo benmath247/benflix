@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signup from "./components/Signup/Signup";
@@ -7,9 +7,33 @@ import Login from "./components/Login/Login";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Movie from "./components/Movie/Movie";
+import jwtDecode from "jwt-decode";
+import { useNavigate } from "react-router-dom"
 
 function App() {
   const [user, setUser] = useState(null)
+  
+  useEffect(() => {
+    const jwtToken = window.localStorage.getItem("jwtToken");
+    //const navigate = useNavigate();
+    if (jwtToken) {
+      let decodedToken = jwtDecode(jwtToken);
+
+      const currentTime = Date.now() / 1000;
+      if (decodedToken.exp < currentTime) {
+        window.localStorage.removeItem("jwtToken");
+        //navigate("/login");
+      } else {
+        setUser({
+          email: decodedToken.email,
+          username: decodedToken.username,
+          isAuth: true,
+        });
+        //navigate("/movie");
+      }
+    }
+  }, []);
+
   return (
     <div>
       <BrowserRouter>

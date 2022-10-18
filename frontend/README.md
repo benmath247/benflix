@@ -22,3 +22,5 @@ if user is logged in, nav link should change to:
 - movie
 - profile
 - logout
+
+if user refreshes the browser, the app should check if JWTtoken exists. If it does, app should check if it is expired. if it is, login. else, allow user to proceed

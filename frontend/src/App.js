@@ -6,6 +6,7 @@ import Header from "./components/Header/Header";
 import Login from "./components/Login/Login";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+import Movie from "./components/Movie/Movie";
 
 function App() {
   const [user, setUser] = useState(null)
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<h1>Home</h1>} />
           <Route path="/sign-up" element={<Signup />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
+          <Route path="/movie" element={<Movie />} />
           <Route path="*" element={<div>Not Found</div>} />
         </Routes>
       </BrowserRouter>

@@ -2,7 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import "./Header.css";
-function Header() {
+function Header({ user }) {
+  console.log(user)
   return (
     <div className="header-container">
       <div className="header-container-title">

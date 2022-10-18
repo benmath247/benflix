@@ -17,3 +17,8 @@ use emailhooks to check for email value
 required - keyword
 
 make a http call to the server and you should get back a jwt token
+
+if user is logged in, nav link should change to:
+- movie
+- profile
+- logout

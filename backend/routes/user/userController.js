@@ -39,11 +39,14 @@ async function signIn(req, res) {
       } else {
         let jwtToken = jwt.sign(
           {
+            // information to expose
             email: foundUser.email,
             username: foundUser.username,
           },
+          // secret
           process.env.JWT_TOKEN_SECRET_KEY,
           {
+            // exposed
             expiresIn: "7d",
           }
         );

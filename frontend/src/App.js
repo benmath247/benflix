@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signup from "./components/Signup/Signup";
@@ -7,15 +8,16 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 function App() {
+  const [user, setUser] = useState(null)
   return (
     <div>
       <BrowserRouter>
         <ToastContainer />
-        <Header />
+        <Header user={user} />
         <Routes>
           <Route path="/" element={<h1>Home</h1>} />
           <Route path="/sign-up" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="*" element={<div>Not Found</div>} />
         </Routes>
       </BrowserRouter>

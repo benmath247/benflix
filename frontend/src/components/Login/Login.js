@@ -5,8 +5,9 @@ import { toast } from "react-toastify";
 import UsernameHooks from "../hooks/UsernameHooks";
 import EmailHooks from "../hooks/EmailHooks";
 import PasswordHooks from "../hooks/PasswordHooks";
+import jwtDecode from "jwt-decode";
 
-function Login() {
+function Login({ setUser }) {
   const [
     emailInput,
     setEmailInput,
@@ -28,6 +29,13 @@ function Login() {
       console.log(payload);
       let jwtToken = payload.data.payload
       window.localStorage.setItem("jwtToken", jwtToken);
+      // decoding JWT
+      const decodedToken = jwtDecode(jwtToken)
+      setUser({
+        email: decodedToken.email,
+        username: decodedToken.username,
+        isAuth: true
+      })
     } catch (e) {
       if (e.response && e.response.data.message === "failure") {
         toast.error(`${e.response.data.payload[0]}`, {

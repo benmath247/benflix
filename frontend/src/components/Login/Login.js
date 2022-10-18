@@ -7,6 +7,8 @@ import EmailHooks from "../hooks/EmailHooks";
 import PasswordHooks from "../hooks/PasswordHooks";
 import jwtDecode from "jwt-decode";
 
+import { useNavigate } from "react-router-dom"
+
 function Login({ setUser }) {
   const [
     emailInput,
@@ -17,6 +19,8 @@ function Login({ setUser }) {
   ] = EmailHooks();
 
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate()
 
   async function apiLogin(e) {
     e.preventDefault();
@@ -31,11 +35,15 @@ function Login({ setUser }) {
       window.localStorage.setItem("jwtToken", jwtToken);
       // decoding JWT
       const decodedToken = jwtDecode(jwtToken)
+      toast.success("Successful Login")
+      setEmailInput("")
+      setPassword("")
       setUser({
         email: decodedToken.email,
         username: decodedToken.username,
         isAuth: true
       })
+      navigate("/movie")
     } catch (e) {
       if (e.response && e.response.data.message === "failure") {
         toast.error(`${e.response.data.payload[0]}`, {

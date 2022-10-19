@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-
+import jwtDecode from "jwt-decode";
 import UsernameHooks from "../hooks/UsernameHooks";
 import EmailHooks from "../hooks/EmailHooks";
 import PasswordHooks from "../hooks/PasswordHooks";
+import { useNavigate } from "react-router-dom"
 
 function Signup() {
+  const navigate = useNavigate()
+  useEffect(() => {
+    const jwtToken = window.localStorage.getItem("jwtToken");
+    //const navigate = useNavigate();
+    if (jwtToken) {
+      let decodedToken = jwtDecode(jwtToken);
+
+      const currentTime = Date.now() / 1000;
+      if (decodedToken.exp < currentTime) {
+        window.localStorage.removeItem("jwtToken");
+        navigate("/signup");
+      } else {
+        navigate("/movie")
+        //navigate("/movie");
+      }
+    }
+  }, []);
   const [
     usernameInput,
     setUsernameInput,

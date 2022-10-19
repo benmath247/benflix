@@ -41,7 +41,7 @@ function App() {
         <Header user={user} />
         <Routes>
           <Route path="/" element={<h1>Home</h1>} />
-          <Route path="/sign-up" element={<Signup />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/movie" element={<Movie />} />
           <Route path="*" element={<div>Not Found</div>} />

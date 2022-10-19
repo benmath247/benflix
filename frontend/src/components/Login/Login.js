@@ -34,7 +34,6 @@ function Login({ setUser }) {
         navigate("/login");
       } else {
         navigate("/movie")
-        const loggedIn = true;
         //navigate("/movie");
       }
     }

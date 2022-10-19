@@ -24,3 +24,6 @@ if user is logged in, nav link should change to:
 - logout
 
 if user refreshes the browser, the app should check if JWTtoken exists. If it does, app should check if it is expired. if it is, login. else, allow user to proceed
+
+after user is logged in, user shouldnt be able to go to /login or /signup
+check the token to see if it expires, if it does send the user to login page else /movie

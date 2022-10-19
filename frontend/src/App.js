@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom"
 
 function App() {
   const [user, setUser] = useState(null)
-  
+
   useEffect(() => {
     const jwtToken = window.localStorage.getItem("jwtToken");
     //const navigate = useNavigate();
@@ -28,7 +28,7 @@ function App() {
           email: decodedToken.email,
           username: decodedToken.username,
           isAuth: true,
-        });
+        })
         //navigate("/movie");
       }
     }

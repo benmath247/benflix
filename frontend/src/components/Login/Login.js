@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -21,6 +21,24 @@ function Login({ setUser }) {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const jwtToken = window.localStorage.getItem("jwtToken");
+    //const navigate = useNavigate();
+    if (jwtToken) {
+      let decodedToken = jwtDecode(jwtToken);
+
+      const currentTime = Date.now() / 1000;
+      if (decodedToken.exp < currentTime) {
+        window.localStorage.removeItem("jwtToken");
+        navigate("/login");
+      } else {
+        navigate("/movie")
+        const loggedIn = true;
+        //navigate("/movie");
+      }
+    }
+  }, []);
 
   async function apiLogin(e) {
     e.preventDefault();

@@ -13,6 +13,11 @@ import { useNavigate } from "react-router-dom"
 function App() {
   const [user, setUser] = useState(null)
 
+  function logout() {
+    window.localStorage.removeItem("jwtToken");
+    setUser(null);
+  }
+
   useEffect(() => {
     const jwtToken = window.localStorage.getItem("jwtToken");
     //const navigate = useNavigate();
@@ -38,7 +43,7 @@ function App() {
     <div>
       <BrowserRouter>
         <ToastContainer />
-        <Header user={user} />
+        <Header user={user} logout={logout}/>
         <Routes>
           <Route path="/" element={<h1>Home</h1>} />
           <Route path="/signup" element={<Signup />} />

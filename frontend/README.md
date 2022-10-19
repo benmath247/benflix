@@ -33,3 +33,5 @@ create a custom hook called useUserAuthHook.js. It should:
 - check if token is not expired
 - if it is expired, send user to login
     else set user
+
+log user out and delete the token

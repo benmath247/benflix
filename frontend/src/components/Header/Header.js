@@ -1,8 +1,8 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 import "./Header.css";
-function Header({ user }) {
+function Header({ user, logout }) {
   const headerMessage = user ? `Welcome, ${user.username}!` : "Movie App"
   if (user == null) {
     return (
@@ -66,14 +66,14 @@ function Header({ user }) {
           >
             Profile
           </NavLink>
-          <NavLink
-            to="/logout"
+          <Link onClick={logout}
+            to="/login"
             className={({ isActive }) =>
               isActive ? "active-nav-link" : undefined
             }
           >
             Logout
-          </NavLink>
+          </Link>
         </div>
       </div>
     )

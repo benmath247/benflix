@@ -27,3 +27,9 @@ if user refreshes the browser, the app should check if JWTtoken exists. If it do
 
 after user is logged in, user shouldnt be able to go to /login or /signup
 check the token to see if it expires, if it does send the user to login page else /movie
+
+create a custom hook called useUserAuthHook.js. It should:
+- check if token exists
+- check if token is not expired
+- if it is expired, send user to login
+    else set user

@@ -5,26 +5,12 @@ import jwtDecode from "jwt-decode";
 import UsernameHooks from "../hooks/UsernameHooks";
 import EmailHooks from "../hooks/EmailHooks";
 import PasswordHooks from "../hooks/PasswordHooks";
+import UserAuthHook from "../hooks/UserAuthHook";
 import { useNavigate } from "react-router-dom"
 
 function Signup() {
   const navigate = useNavigate()
-  useEffect(() => {
-    const jwtToken = window.localStorage.getItem("jwtToken");
-    //const navigate = useNavigate();
-    if (jwtToken) {
-      let decodedToken = jwtDecode(jwtToken);
-
-      const currentTime = Date.now() / 1000;
-      if (decodedToken.exp < currentTime) {
-        window.localStorage.removeItem("jwtToken");
-        navigate("/signup");
-      } else {
-        navigate("/movie")
-        //navigate("/movie");
-      }
-    }
-  }, []);
+  UserAuthHook("/movie")
   const [
     usernameInput,
     setUsernameInput,

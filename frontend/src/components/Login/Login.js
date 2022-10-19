@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-
+import UserAuthHook from "../hooks/UserAuthHook";
 import UsernameHooks from "../hooks/UsernameHooks";
 import EmailHooks from "../hooks/EmailHooks";
 import PasswordHooks from "../hooks/PasswordHooks";
@@ -22,22 +22,7 @@ function Login({ setUser }) {
 
   const navigate = useNavigate()
 
-  useEffect(() => {
-    const jwtToken = window.localStorage.getItem("jwtToken");
-    //const navigate = useNavigate();
-    if (jwtToken) {
-      let decodedToken = jwtDecode(jwtToken);
-
-      const currentTime = Date.now() / 1000;
-      if (decodedToken.exp < currentTime) {
-        window.localStorage.removeItem("jwtToken");
-        navigate("/login");
-      } else {
-        navigate("/movie")
-        //navigate("/movie");
-      }
-    }
-  }, []);
+  UserAuthHook("/movie")
 
   async function apiLogin(e) {
     e.preventDefault();

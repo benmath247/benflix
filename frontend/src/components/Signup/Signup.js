@@ -9,8 +9,7 @@ import UserAuthHook from "../hooks/UserAuthHook";
 import { useNavigate } from "react-router-dom"
 
 function Signup() {
-  const navigate = useNavigate()
-  UserAuthHook("/movie")
+  UserAuthHook("/movie", "/signup")
   const [
     usernameInput,
     setUsernameInput,

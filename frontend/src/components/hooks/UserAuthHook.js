@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 
 import jwtDecode from "jwt-decode";
 
-function UserAuthHook(destination) {
+function UserAuthHook(loggedin, notLoggedIn) {
     const navigate = useNavigate()
     useEffect(() => {
         const jwtToken = window.localStorage.getItem("jwtToken");
@@ -13,10 +13,12 @@ function UserAuthHook(destination) {
             const currentTime = Date.now() / 1000;
             if (decodedToken.exp < currentTime) {
                 window.localStorage.removeItem("jwtToken");
-                navigate("/login");
+                navigate(notLoggedIn);
             } else {
-                navigate(destination)
+                navigate(loggedin)
             }
+        } else {
+            navigate(notLoggedIn);
         }
     }, []);
 }

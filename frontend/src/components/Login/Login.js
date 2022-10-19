@@ -22,7 +22,7 @@ function Login({ setUser }) {
 
   const navigate = useNavigate()
 
-  UserAuthHook("/movie")
+  UserAuthHook("/movie", "/login")
 
   async function apiLogin(e) {
     e.preventDefault();

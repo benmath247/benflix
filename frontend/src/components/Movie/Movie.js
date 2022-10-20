@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Movie.css'
 import UserAuthHook from '../hooks/UserAuthHook'
 import axios from 'axios'
@@ -9,6 +9,11 @@ import MovieList from '../MovieList/MovieList'
 
 function Movie() {
   UserAuthHook("/movie", "/login")
+  useEffect(() => {
+  
+    setMovie(fetchMovie("harry potter"))
+  }, [])
+  
   const [movie, setMovie] = useState("")
   const [movieArray, setMovieArray] = useState([])
   const [isLoading, setIsLoading] = useState(false)

@@ -32,7 +32,7 @@ function Login({ setUser }) {
         password: password,
       });
 
-      console.log(payload);
+      // console.log(payload);
       let jwtToken = payload.data.payload
       window.localStorage.setItem("jwtToken", jwtToken);
       // decoding JWT

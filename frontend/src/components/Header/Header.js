@@ -41,7 +41,7 @@ function Header({ user, logout }) {
       </div>
     );
   } else {
-    console.log(user)
+    // console.log(user)
     return (
       <div className="header-container">
         <div className="header-container-title">

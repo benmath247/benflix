@@ -10,23 +10,30 @@ import MovieList from '../MovieList/MovieList'
 function Movie() {
   UserAuthHook("/movie", "/login")
   useEffect(() => {
-  
-    setMovie(fetchMovie("harry potter"))
+    fetchMovie(favoriteMovies[Math.floor(Math.random() * favoriteMovies.length)])
   }, [])
-  
+
   const [movie, setMovie] = useState("")
   const [movieArray, setMovieArray] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(false)
+  const favoriteMovies = ["Harry Potter", "Lord of the Rings", "Star Wars", "Godfather", "Pokemon", "Pirates of the", "Spiderman"]
   async function fetchMovie(movieTitle) {
     setIsLoading(true)
     const url = `http://www.omdbapi.com/?s=${movieTitle}&apikey=${apiKey()}`
     try {
       let resp = await axios.get(url)
-      console.log(resp)
-      setMovieArray(resp.data.Search)
+      if (Array.isArray(resp.data.Search)) {
+        setMovieArray(resp.data.Search)
+        setIsLoading(false)
+      } else {
+        setError(true)
+        throw new Error("Movie not found.")
+      }
       setIsLoading(false)
     } catch (error) {
-      console.log(error)
+      setIsLoading(false)
+      setError(error.message)
     }
   }
 
@@ -39,13 +46,14 @@ function Movie() {
     <>
       <div className="movie-container">
         <div className="movie-input">
+          {error && <div style={{textAlign: "center", color: "red", padding: 15}}>{error}</div>}
           <form onSubmit={handleOnSubmit}>
-            <input type="text" onChange={(e) => setMovie(e.target.value)} />
+            <input type="text" value={"Please enter a movie"} onChange={(e) => setMovie(e.target.value)} />
             <button type="submit">Search</button>
           </form>
         </div>
       </div>
-      { isLoading ? <Spinner /> : <MovieList movieArray={movieArray} />}
+      {isLoading ? <Spinner /> : <MovieList movieArray={movieArray} />}
     </>
   );
 }

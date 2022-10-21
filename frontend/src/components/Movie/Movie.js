@@ -9,11 +9,11 @@ import MovieList from '../MovieList/MovieList'
 
 function Movie() {
   UserAuthHook("/movie", "/login")
+  const [movie, setMovie] = useState("")
   useEffect(() => {
     fetchMovie(favoriteMovies[Math.floor(Math.random() * favoriteMovies.length)])
   }, [])
 
-  const [movie, setMovie] = useState("")
   const [movieArray, setMovieArray] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(false)
@@ -55,7 +55,7 @@ function Movie() {
         <div className="movie-input">
           {error && <div style={{ textAlign: "center", color: "red", padding: 15 }}>{error}</div>}
           <form onSubmit={handleOnSubmit}>
-            <input type="text" value={"Please enter a movie"} onChange={(e) => setMovie(e.target.value)} />
+            <input type="text" onChange={(e) => setMovie(e.target.value)} />
             <button type="submit">Search</button>
           </form>
         </div>

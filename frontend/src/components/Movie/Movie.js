@@ -17,7 +17,7 @@ function Movie() {
   const [movieArray, setMovieArray] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(false)
-  const favoriteMovies = ["Harry Potter", "Lord of the Rings", "Star Wars", "Godfather", "Pokemon", "Pirates of the", "Spiderman"]
+  const favoriteMovies = ["Harry Potter", "Joker", "Friday the", "Halloween", "Die Hard", "James Bond", "Spiderman", "Ice Age", "Lord of the Rings", "Star Wars", "Godfather", "Pokemon", "Pirates of the", "Spiderman"]
   async function fetchMovie(movieTitle) {
     setIsLoading(true)
     const url = `http://www.omdbapi.com/?s=${movieTitle}&apikey=${apiKey()}`
@@ -28,12 +28,18 @@ function Movie() {
         setIsLoading(false)
       } else {
         setError(true)
-        throw new Error("Movie not found.")
+        // throw new Error("Movie not found.")
+        throw {
+          message: "Movie not found",
+          statusCode: 404
+        }
       }
       setIsLoading(false)
     } catch (error) {
       setIsLoading(false)
-      setError(error.message)
+      if (error.statusCode === 404){
+        setError(error.message)
+      }
     }
   }
 
@@ -46,7 +52,7 @@ function Movie() {
     <>
       <div className="movie-container">
         <div className="movie-input">
-          {error && <div style={{textAlign: "center", color: "red", padding: 15}}>{error}</div>}
+          {error && <div style={{ textAlign: "center", color: "red", padding: 15 }}>{error}</div>}
           <form onSubmit={handleOnSubmit}>
             <input type="text" value={"Please enter a movie"} onChange={(e) => setMovie(e.target.value)} />
             <button type="submit">Search</button>

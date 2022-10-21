@@ -17,7 +17,8 @@ function Movie() {
   const [movieArray, setMovieArray] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(false)
-  const favoriteMovies = ["Harry Potter", "Joker", "Friday the", "Halloween", "Die Hard", "James Bond", "Spiderman", "Ice Age", "Lord of the Rings", "Star Wars", "Godfather", "Pokemon", "Pirates of the", "Spiderman"]
+  const favoriteMovies = ["Harry Potter", "Joker", "Alien", "Friday the", "Halloween", "Die Hard", "James Bond", "Spiderman", "Ice Age", "Lord of the Rings", "Star Wars", "Godfather", "Pokemon", "Pirates of the", "Spiderman"]
+  
   async function fetchMovie(movieTitle) {
     setIsLoading(true)
     const url = `http://www.omdbapi.com/?s=${movieTitle}&apikey=${apiKey()}`

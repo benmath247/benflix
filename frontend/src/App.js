@@ -8,8 +8,8 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Movie from "./components/Movie/Movie";
 import jwtDecode from "jwt-decode";
-import { useNavigate } from "react-router-dom"
-import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+// import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import MovieDetail from "./components/MovieDetail/MovieDetail";
 
 function App() {
   const [user, setUser] = useState(null)
@@ -50,6 +50,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/movie" element={<Movie />} />
+          <Route path="/movie/:title" element={<MovieDetail />} />
           {/* <Route path="/movie" element={ <PrivateRoute><Movie /></PrivateRoute>} /> */}
           <Route path="*" element={<div>Not Found</div>} />
         </Routes>

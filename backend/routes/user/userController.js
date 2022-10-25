@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const errorHandler = require("../lib/errorHandler/errorHandler");
 const User = require("./UserModel");
+const Movie = require("../movie/MovieModel")
 
 async function createUser(req, res) {
   try {
@@ -59,7 +60,27 @@ async function signIn(req, res) {
   }
 }
 
+async function addMovieToFavorites(res, req) {
+  try {
+    let createdFavoriteMovie = new Movie({
+      title: req.body.title,
+      image: req.body.image,
+      plot: req.body.plot,
+      imdbID: req.body.imdbID
+    })
+
+    let savedFavoriteMovie = await createdFavoriteMovie.save();
+    const decodedData = res.locals.decodedData
+    let foundUser = await User.findOne({ email: decodedData.email })
+
+    foundUser.favoriteMovie.push(savedFavoriteMovie._id)
+  } catch (e) {
+    res.status(500).json({ message: "failure", payload: errorHandler(e) })
+  }
+}
+
 module.exports = {
   createUser,
   signIn,
+  addMovieToFavorites,
 };

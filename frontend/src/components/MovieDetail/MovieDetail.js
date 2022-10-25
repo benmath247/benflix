@@ -9,11 +9,10 @@ import Spinner from '../Spinner/Spinner';
 function MovieDetail() {
     let { title } = useParams();
     const [movie, setMovie] = useState("")
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
 
     async function fetchMovieDetail() {
         try {
-            setIsLoading(true)
             let resp = await axios.get(`http://www.omdbapi.com/?t=${title}&apikey=${apiKey()}`)
             setMovie(resp.data)
             setIsLoading(false)

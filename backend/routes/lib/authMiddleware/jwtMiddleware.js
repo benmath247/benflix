@@ -9,7 +9,7 @@ function jwtMiddleWare(req, res, next) {
 
             let decodedToken = jwt.verify(
                 slicedToken,
-                proccess.env.JWT_TOKEN_SECRET_KEY
+                process.env.JWT_TOKEN_SECRET_KEY
             )
 
             res.locals.decodedData = decodedToken;
@@ -22,7 +22,8 @@ function jwtMiddleWare(req, res, next) {
         }
 
     } catch (e) {
-        res.status(500).json({ message: "error", payload: e / message })
+
+        res.status(500).json({ message: "error", payload: e.message })
     }
 }
 

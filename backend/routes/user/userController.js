@@ -60,7 +60,7 @@ async function signIn(req, res) {
   }
 }
 
-async function addMovieToFavorites(res, req) {
+async function addMovieToFavorites(req, res) {
   try {
     let createdFavoriteMovie = new Movie({
       title: req.body.title,
@@ -74,6 +74,9 @@ async function addMovieToFavorites(res, req) {
     let foundUser = await User.findOne({ email: decodedData.email })
 
     foundUser.favoriteMovie.push(savedFavoriteMovie._id)
+
+
+    res.json({ message: "success", payload: "Favorite movie added!" })
   } catch (e) {
     res.status(500).json({ message: "failure", payload: errorHandler(e) })
   }

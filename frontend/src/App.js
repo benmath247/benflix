@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signup from "./components/Signup/Signup";
 import Header from "./components/Header/Header";
 import Login from "./components/Login/Login";
+import Profile from "./components/Profile/Profile";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Movie from "./components/Movie/Movie";
@@ -51,6 +52,7 @@ function App() {
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/movie" element={<Movie />} />
           <Route path="/movie/:title" element={<MovieDetail />} />
+          <Route path="/profile" element={<Profile />} />
           {/* <Route path="/movie" element={ <PrivateRoute><Movie /></PrivateRoute>} /> */}
           <Route path="*" element={<div>Not Found</div>} />
         </Routes>

@@ -75,15 +75,30 @@ async function addMovieToFavorites(req, res) {
 
     foundUser.favoriteMovie.push(savedFavoriteMovie._id)
 
-
+    await foundUser.save()
     res.json({ message: "success", payload: "Favorite movie added!" })
   } catch (e) {
     res.status(500).json({ message: "failure", payload: errorHandler(e) })
   }
 }
 
+async function getFavoriteMovie(req, res) {
+  try {
+    const decodedData = res.locals.decodedData
+    let foundUser = await User.findOne({ email: decodedData.email })
+      .populate("favoriteMovie", "-__v -createdAt -updatedAt")
+      .select("favoriteMovie -_id")
+    res.json({ message: "success", payload: foundUser })
+  } catch (e) {
+    res.status(500).json({ message: "error", payload: errorHandler(e) })
+  }
+}
+
+
+
 module.exports = {
   createUser,
   signIn,
   addMovieToFavorites,
+  getFavoriteMovie,
 };

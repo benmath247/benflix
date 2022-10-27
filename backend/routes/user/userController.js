@@ -94,6 +94,27 @@ async function getFavoriteMovie(req, res) {
   }
 }
 
+async function deleteMovieById(req, res) {
+  try {
+    const decodedData = res.locals.decodedData;
+    let foundUser = await User.findOne({ email: decodedData.email })
+      .populate("favoriteMovie", "-__v -createdAt -updatedAt")
+      .select("favoriteMovie")
+    let movieArray = foundUser.favoriteMovie
+
+    let removedMovie = movieArray.filter(
+      (item) => item._id.toString() !== req.body.movieId
+    );
+    foundUser.favoriteMovie = removedMovie;
+    await foundUser.save();
+
+    await Movie.findByIdAndRemove({ _id: req.body.movieId });
+    res.json({ message: "success", payload: foundUser.favoriteMovie })
+  } catch (e) {
+    res.status(500).json({ message: "failure", payload: errorHandler(e) })
+  }
+}
+
 
 
 module.exports = {
@@ -101,4 +122,5 @@ module.exports = {
   signIn,
   addMovieToFavorites,
   getFavoriteMovie,
+  deleteMovieById
 };

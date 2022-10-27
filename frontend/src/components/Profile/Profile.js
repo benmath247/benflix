@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Profile.css'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 function Profile() {
     const [favoriteMovieArray, setfavoriteMovieArray] = useState([])
@@ -13,6 +14,25 @@ function Profile() {
             }
         })
         setfavoriteMovieArray(payload.data.payload.favoriteMovie)
+    }
+
+    async function handleMovieDelete(id) {
+        try {
+
+            let payload = await axios.delete("http://localhost:3001/api/user/delete-favorite-movie", {
+                headers:
+                {
+                    authorization: "Bearer " + window.localStorage.getItem("jwtToken")
+                }, data: {
+                    movieId: id,
+                }
+            }
+            )
+            setfavoriteMovieArray(payload.data.payload)
+            toast.success("Movie deleted")
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     useEffect(() => {
@@ -36,7 +56,7 @@ function Profile() {
                                             <h1>{item.title}</h1>
                                             <div>{item.plot}</div>
                                             <div className='delete-button'>
-                                                <button>Delete</button>
+                                                <button onClick={() => handleMovieDelete(item._id)}>Delete</button>
                                             </div>
                                         </div>
                                     </div>

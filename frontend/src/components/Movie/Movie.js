@@ -46,7 +46,7 @@ function Movie() {
   async function fetchMovie(movieTitle) {
     setIsLoading(true)
     setOnLoadMovie(movieTitle)
-    const url = `http://www.omdbapi.com/?s=${movieTitle}&apikey=${apiKey()}&page=${page}`
+    const url = `http://www.omdbapi.com/?s=${movieTitle}&apikey=${process.env.REACT_APP_OMDB_API}&page=${page}`
     try {
       let resp = await axios.get(url)
       if (Array.isArray(resp.data.Search)) {

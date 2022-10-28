@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom"
 import apiKey from '../Movie/apikey';
 import './MovieDetail.css'
 import Spinner from '../Spinner/Spinner';
-
+import AxiosAuth from '../Axios/Axios';
 import { toast } from 'react-toastify'
 
 function MovieDetail() {
@@ -18,26 +18,22 @@ function MovieDetail() {
             let resp = await axios.get(`http://www.omdbapi.com/?t=${title}&apikey=${apiKey()}`)
             setMovie(resp.data)
             setIsLoading(false)
-        } catch { }
+        } catch (e) {
+            console.log(e)
+         }
     }
 
     async function addToFavorites() {
         try {
 
-            let payload = await axios.post("http://localhost:3001/api/user/add-to-favorites", {
+            let payload = await AxiosAuth.post("/api/user/add-to-favorites", {
 
                 title: movie.Title,
                 image: movie.Poster,
                 plot: movie.Plot,
                 imdbID: movie.imdbID
-            }, {
-                headers:
-                {
-                    authorization: "Bearer " + window.localStorage.getItem("jwtToken")
-                }
             }
             )
-            console.log(payload)
             toast.success("Favorite movie added")
         } catch (e) {
             console.log(e)

@@ -3,17 +3,20 @@ import { Link } from 'react-router-dom'
 
 function MovieList({ movieArray }) {
   return (
-    
-      <div className="movie-list-container">
-        {movieArray.map((item) => {
-          return (<div key={item.imdbId}>
-            <div>
-              <img src={item.Poster} /></div>
-            <div><Link to={`/movie/${item.Title}`}><h2>{item.Title}
-            </h2></Link></div>
-          </div>
-          )
-        })}</div>
+
+    <div className="movie-list-container">
+      {movieArray.map((item) => {
+
+        let poster = item.Poster !== "N/A" ? item.Poster : "https://via.placeholder.com/300x477"
+
+        return (<div key={item.imdbID}>
+          <div>
+            <img src={poster} /></div>
+          <div><Link to={`/movie/${item.Title}`}><h2>{item.Title}
+          </h2></Link></div>
+        </div>
+        )
+      })}</div>
 
   )
 }

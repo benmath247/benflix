@@ -3,26 +3,27 @@
   }
   
   .profile-container h1 {
-    text-align: center;
+    /* text-align: center; */
     margin-top: 50px;
   }
   
   .favorite-container {
     display: flex;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
     margin-top: 25px;
     margin-bottom: 25px;
-    text-align: center;
+    /* text-align: center; */
   }
   
   .favorite-container-column {
-    flex: 50%;
-    padding-right: 10px;
+    /* flex: 50%; */
+    padding: 20px;
+    margin: 100px;
   }
   
-  .favorite-one {
+  /* .favorite-one {
     flex: 1 1 0;
-  }
+  } */
   
   .favorite-two {
     flex: 2 1 0;
@@ -46,7 +47,7 @@
   }
   
   .favorite-container img {
-    height: 250px;
+    height: 300px;
   }
   
   @media screen and (max-width: 600px) {

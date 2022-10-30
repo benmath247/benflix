@@ -11,6 +11,7 @@ import Movie from "./components/Movie/Movie";
 import jwtDecode from "jwt-decode";
 // import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import MovieDetail from "./components/MovieDetail/MovieDetail";
+import Home from "./components/Home/Home";
 
 function App() {
   const [user, setUser] = useState(null)
@@ -47,7 +48,7 @@ function App() {
         <ToastContainer />
         <Header user={user} logout={logout} />
         <Routes>
-          <Route path="/" element={<h1>Home</h1>} />
+          <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/movie" element={<Movie />} />

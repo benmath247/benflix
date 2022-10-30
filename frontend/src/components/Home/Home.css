@@ -1,0 +1,18 @@
+.home-container {
+    display: flex;
+    /* align-items: center; */
+    justify-content: left;
+    margin: 100px;
+    /* text-align: center; */
+    color: white;
+    border-style: double;
+    border-color: red;
+    border-radius: 25px 25px;
+}
+
+.home-text {
+    align-items: left;
+    margin: 20px;
+    padding: 20px;
+    color: white;
+}

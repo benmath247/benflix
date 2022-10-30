@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { isEmail } from "validator";
 
 function EmailHooks() {
   const [input, setInput] = useState("");

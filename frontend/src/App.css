@@ -4,6 +4,10 @@
   color: white
 }
 
+input {
+  color: black;
+}
+
 .form-container {
   display: flex;
   align-items: center;

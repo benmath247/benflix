@@ -7,6 +7,7 @@ import EmailHooks from "../hooks/EmailHooks";
 import PasswordHooks from "../hooks/PasswordHooks";
 import UserAuthHook from "../hooks/UserAuthHook";
 import { useNavigate } from "react-router-dom"
+import './Signup.css'
 
 function Signup() {
   UserAuthHook("/movie", "/signup")

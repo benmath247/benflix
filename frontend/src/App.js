@@ -54,7 +54,6 @@ function App() {
           <Route path="/movie" element={<Movie />} />
           <Route path="/movie/:title" element={<MovieDetail />} />
           <Route path="/profile" element={<Profile />} />
-          {/* <Route path="/movie" element={ <PrivateRoute><Movie /></PrivateRoute>} /> */}
           <Route path="*" element={<div>Not Found</div>} />
         </Routes>
       </BrowserRouter>

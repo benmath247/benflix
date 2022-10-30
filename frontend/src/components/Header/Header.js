@@ -22,7 +22,7 @@ function Header({ user, logout }) {
             Home
           </NavLink>
           <NavLink
-            to="/sign-up"
+            to="/signup"
             className={({ isActive }) =>
               isActive ? "active-nav-link" : undefined
             }
@@ -56,7 +56,7 @@ function Header({ user, logout }) {
             }
             end
           >
-            Movie
+            Movies
           </NavLink>
           <NavLink
             to="/profile"

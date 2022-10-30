@@ -16,7 +16,7 @@ function EmailHooks() {
     }
   }, [input, onBlur, onFocus]);
 
-  return [input, setInput, error, setOnBlur, setOnFocus];
+  return [input, setInput, error, setError, setOnBlur, setOnFocus];
 }
 
 export default EmailHooks;

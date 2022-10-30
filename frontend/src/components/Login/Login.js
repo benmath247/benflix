@@ -63,7 +63,7 @@ function Login({ setUser }) {
   return (
     <form className="form-container" onSubmit={apiLogin}>
       <div className="form-div">
-        <h1>Login</h1>
+        <h1 style={{color:"white"}}>Login</h1>
 
         <div className="form-input">
           <input
@@ -93,7 +93,7 @@ function Login({ setUser }) {
           />
         </div>
 
-        <button>Submit</button>
+        <button style={{backgroundColor:"red"}}>Submit</button>
       </div>
     </form>
   );

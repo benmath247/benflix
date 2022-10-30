@@ -13,7 +13,7 @@ function MovieList({ movieArray }) {
             <Link to={`/movie/${item.Title}`}>
           <div>
             <img src={poster} /></div>
-          <div>
+          <div style = {{ color: "red" }}>
             <h2>{item.Title}
           </h2>
           </div>

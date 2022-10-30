@@ -6,7 +6,7 @@ function Home() {
         <div className='home-container'>
             <div className='home-text'>
                 <h1>Welcome to <strong>benmath247/MovieApp</strong></h1>
-                <div>Thanks for checking this out!</div>
+                <div style={{ color: "red", padding: 10 }}>Thanks for checking this out!</div>
             </div>
         </div>
     )

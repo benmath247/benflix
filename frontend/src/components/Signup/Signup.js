@@ -15,6 +15,7 @@ function Signup() {
     usernameInput,
     setUsernameInput,
     usernameError,
+    setUsernameError,
     setUsernameOnBlur,
     setUsernameOnFocus,
   ] = UsernameHooks();
@@ -23,6 +24,7 @@ function Signup() {
     emailInput,
     setEmailInput,
     emailError,
+    setEmailError,
     setEmailOnBlur,
     setEmailOnFocus,
   ] = EmailHooks();
@@ -31,9 +33,12 @@ function Signup() {
     passwordInput,
     setPasswordInput,
     passwordError,
+    setPasswordError,
     setPasswordOnBlur,
     setPasswordOnFocus,
   ] = PasswordHooks();
+
+  const navigate = useNavigate();
 
   async function apiSignUp(e) {
     e.preventDefault();
@@ -45,6 +50,7 @@ function Signup() {
       });
       toast.success(`Please go sign in!`, {
         position: "top-center",
+        color: "black",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -54,8 +60,12 @@ function Signup() {
         theme: "light",
       });
       setUsernameInput("");
+      setUsernameError("")
       setEmailInput("");
+      setEmailError("")
       setPasswordInput("");
+      setPasswordError("")
+      navigate('/login')
     } catch (e) {
       console.log(e.response);
       if (e.response && e.response.data.message === "failure") {
@@ -76,7 +86,7 @@ function Signup() {
   return (
     <form className="form-container" onSubmit={apiSignUp}>
       <div className="form-div">
-        <h1>Sign up</h1>
+        <h1 style={{color:"white"}}>Sign up</h1>
 
         <div className="form-input">
           <input
@@ -132,7 +142,7 @@ function Signup() {
           </div>
         </div>
 
-        <button>Submit</button>
+        <button style={{backgroundColor:"red"}}>Submit</button>
       </div>
     </form>
   );

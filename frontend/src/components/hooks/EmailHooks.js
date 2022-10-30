@@ -11,8 +11,6 @@ function EmailHooks() {
     if (onBlur || (onFocus && input.length > 1)) {
       if (input.length === 0) {
         setError("email cannot be empty");
-      } else if (!isEmail(input)) {
-        setError("email cannot have special characters");
       } else {
         setError(false);
       }

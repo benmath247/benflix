@@ -4,7 +4,6 @@ import "./Pagination.css";
 
 function Pagination({ totalMovieResults, page, setPage }) {
 
-
     const [currentPaginationArray, setCurrentPaginationArray] = useState([]);
     const [startingPosition, setStartingPoistion] = useState(0);
 

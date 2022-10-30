@@ -15,7 +15,7 @@ function Login({ setUser }) {
     setEmailInput,
     emailError,
     setEmailOnBlur,
-    setEmailOnFocus,
+    setEmailOnFocus
   ] = EmailHooks();
 
   const [password, setPassword] = useState("");

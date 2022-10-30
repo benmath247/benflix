@@ -27,6 +27,7 @@
   
   .favorite-two {
     flex: 2 1 0;
+    color: white
   }
   
   .favorite-container div {

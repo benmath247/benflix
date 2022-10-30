@@ -59,7 +59,7 @@ function MovieDetail() {
                     </div>
                     <div className="movie-detail-column">
                         <div className="movie-details">
-                            <div>
+                            <div style = {{ color: "red" }}>
                                 <h1>{movie.Title}</h1>
                             </div>
 

@@ -19,12 +19,13 @@
     border: none;
     padding: 15px 15px;
     border-radius: 15px 15px;
-    background-color: black;
+    background-color: red;
     color: white;
 }
 
 .movie-details div {
     margin-top: 25px;
+    color: white;
 }
 
 @media screen and (max-width: 600px) {

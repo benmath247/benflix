@@ -7,17 +7,6 @@ import Spinner from '../Spinner/Spinner'
 import MovieList from '../MovieList/MovieList'
 import Pagination from '../Pagination/Pagination'
 
-// function makePaginationArray(totalMovieResult, itemLimit) {
-//   let roundedPaginationPage = Math.round(totalMovieResult / itemLimit);
-//   let array = [];
-
-//   for (let i = 1; i <= roundedPaginationPage; i++) {
-//     array.push(i);
-//   }
-
-//   return array;
-// }
-
 function Movie() {
   UserAuthHook("/movie", "/login")
   const [movieArray, setMovieArray] = useState([])
@@ -25,6 +14,8 @@ function Movie() {
   const [error, setError] = useState(false)
   const [page, setPage] = useState(1)
   const [totalMovieResults, settotalMovieResults] = useState(0)
+  const [movie, setMovie] = useState("")
+  const [onLoadMovie, setOnLoadMovie] = useState(null)
   const favoriteMovies = [
     "Harry Potter",
     "Joker",
@@ -42,8 +33,6 @@ function Movie() {
     "Pirates of the",
     "Spiderman"
   ]
-  const [movie, setMovie] = useState("")
-  const [onLoadMovie, setOnLoadMovie] = useState(null)
 
   useEffect(() => {
     fetchMovie(favoriteMovies[Math.floor(Math.random() * favoriteMovies.length)])
@@ -66,12 +55,11 @@ function Movie() {
     setOnLoadMovie(movieTitle)
     setError("")
     const url = `http://www.omdbapi.com/?s=${movieTitle}&apikey=${process.env.REACT_APP_OMDB_API}&page=${page}`
+    console.log(url)
     try {
       let resp = await axios.get(url)
       if (Array.isArray(resp.data.Search)) {
         setMovieArray(resp.data.Search)
-
-
 
         settotalMovieResults(Number(resp.data.totalResults));
 
@@ -94,7 +82,6 @@ function Movie() {
 
   function handleOnSubmit(e) {
     e.preventDefault()
-    setPage(1)
     fetchMovie(movie)
   }
 

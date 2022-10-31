@@ -7,7 +7,7 @@ function Pagination({ totalMovieResults, page, setPage }) {
     const [reachedTheEnd, setReachedTheEnd] = useState(false)
 
     useEffect(() => {
-        if (page>=(totalMovieResults/10)){
+        if ((totalMovieResults <= 10) || (page >= (totalMovieResults / 10))) {
             setReachedTheEnd(true)
         } else {
             setReachedTheEnd(false)
@@ -21,12 +21,12 @@ function Pagination({ totalMovieResults, page, setPage }) {
     function handlePrev() {
         setPage((page) => page - 1)
     }
-    
+
     return (
         <div className="pagination-container">
             <button className={`${page === 1 && "disabled"}`} onClick={handlePrev}>Prev</button>
 
-            <button className={`${reachedTheEnd && "disabled"}`} onClick={handleNext}>Next</button>
+            <button className={`${(reachedTheEnd) && "disabled"}`} onClick={handleNext}>Next</button>
         </div>
     );
 }

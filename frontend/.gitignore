@@ -4,10 +4,13 @@
 /node_modules
 /.pnp
 .pnp.js
+package.json
 
 # testing
 /coverage
 .env
+package-lock.json
+
 
 # production
 /build

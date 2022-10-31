@@ -45,7 +45,7 @@ function MovieDetail() {
         fetchMovieDetail()
 
     }, [])
-    console.log(movie)
+    
     return (
         <div className="movie-detail-container">
             {isLoading ? (

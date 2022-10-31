@@ -12,7 +12,7 @@ function Pagination({ totalMovieResults, page, setPage }) {
         } else {
             setReachedTheEnd(false)
         }
-    }, [page])
+    }, [page, totalMovieResults])
 
     function handleNext() {
         setPage((page) => page + 1)

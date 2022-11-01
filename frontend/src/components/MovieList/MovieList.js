@@ -8,11 +8,16 @@ function MovieList({ movieArray }) {
       {movieArray.map((item) => {
 
         let poster = item.Poster !== "N/A" ? item.Poster : "https://via.placeholder.com/300x477"
+        let title = item.Poster !== "N/A" ? "" : item.Title
 
         return (<div key={item.imdbID}>
           <Link to={`/movie/${item.Title}`}>
-            <div>
-              <img src={poster} /></div>
+            <div style={{color: "red"}}>
+              <img src={poster} alt={item.Title} />
+              <h3>
+                {title}
+                </h3>
+              </div>
 
           </Link>
         </div>

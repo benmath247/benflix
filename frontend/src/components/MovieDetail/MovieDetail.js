@@ -45,7 +45,7 @@ function MovieDetail() {
         fetchMovieDetail()
 
     }, [])
-    
+
     return (
         <div className="movie-detail-container">
             {isLoading ? (
@@ -54,7 +54,7 @@ function MovieDetail() {
                 <>
                     <div className="movie-detail-column">
                         <div className="movie-detail-poster">
-                            <img src={movie.Poster} />
+                            <img src={movie.Poster} align="right" />
                         </div>
                     </div>
                     <div className="movie-detail-column">

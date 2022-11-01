@@ -11,9 +11,10 @@
     height: 300px;
 }
 
-.movie-detail-poster {
-    text-align: center;
-}
+/* .movie-detail-poster {
+    justify-content: right;
+    flex-direction: column;
+} */
 
 .movie-detail-container button {
     border: none;
@@ -24,7 +25,8 @@
 }
 
 .movie-details div {
-    margin-top: 25px;
+    margin: 25px;
+    margin-right: 200px;
     color: white;
 }
 
